@@ -139,6 +139,11 @@ Pixel representation:
 
 HSV represents colors in a way that is more intuitive than RGB.
 
+<img width="800" height="600" alt="HSV2" src="https://github.com/user-attachments/assets/23dd1601-d628-4ec4-abc7-721b56c53921" />
+
+<img width="1089" height="570" alt="HSV - Copy" src="https://github.com/user-attachments/assets/0b592943-979b-4315-b135-306e83cb97a5" />
+
+
 HSV consists of:
 
 - **Hue (H)** → Color
