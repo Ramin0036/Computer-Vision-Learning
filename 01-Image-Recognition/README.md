@@ -12,12 +12,22 @@ This repository provides an introduction to the most common **image types**, **c
   - [RGB Image](#rgb-image)
   - [HSV Image](#hsv-image)
 - [Image Channels](#-image-channels)
+- [Image Properties](#-image-properties)
+  - [Intensity](#intensity)
+  - [Contrast](#contrast)
+  - [Brightness](#brightness)
+  - [Dynamic Range](#dynamic-range)
+  - [Resolution](#resolution)
+  - [Bit Depth](#bit-depth)
+  - [Histogram](#histogram)
 - [Alpha Channel](#-alpha-channel)
 - [Image Formats](#-image-formats)
   - [PNG](#png)
   - [JPEG](#jpeg)
   - [WebP](#webp)
 - [Comparison Tables](#-comparison-tables)
+- [Summary](#-summary)
+- [References](#-references)
 
 ---
 
