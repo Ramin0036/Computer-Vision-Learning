@@ -278,7 +278,6 @@ Different enhancement methods affect brightness and contrast differently:
 
 | Method | Brightness | Contrast |
 |---------|------------|-----------|
-| Brightness Adjustment | ✅ Changes | ❌ Little Effect |
 | Histogram Stretching | ⚠ Slight Change | ✅ Improved |
 | Histogram Equalization | ⚠ Often Changes | ✅ Greatly Improved |
 | CLAHE | ✅ Better Preserved | ✅ Locally Improved |
