@@ -111,43 +111,167 @@ This improves the global contrast, especially for images whose pixel values are 
 
 CLAHE is an improved version of Adaptive Histogram Equalization (AHE).
 
-Instead of processing the whole image at once, CLAHE divides the image into small regions (tiles), equalizes each one independently, and limits excessive contrast amplification to prevent noise enhancement.
+Instead of applying histogram equalization to the entire image, CLAHE divides the image into small regions called **tiles**. Each tile is processed independently, and finally the neighboring tiles are blended together using interpolation.
 
-## ✅ Advantages
+Unlike standard Histogram Equalization, CLAHE also limits the height of the histogram before equalization using a parameter called the **Clip Limit**. This prevents excessive contrast enhancement and reduces noise amplification.
 
-- Enhances local contrast
-- Preserves image details
-- Prevents excessive noise amplification
-- Performs well under uneven lighting
+---
 
-## ❌ Disadvantages
+## 📊 Why CLAHE?
 
-- More computationally expensive
-- Parameters (clip limit and tile size) must be selected carefully
+Consider an image with poor local contrast.
+
+### Original Histogram
+
+```text
+Frequency
+ ^
+ |                         ████
+ |                     ██████████
+ |                  ██████████████
+ |               ███████████████
+ |            ███████████
+ +------------------------------------------------>
+ 0                                            255
+
+Most pixels occupy a narrow intensity range,
+resulting in low image contrast.
+```
+
+---
+
+### Histogram after Global Histogram Equalization
+
+```text
+Frequency
+ ^
+ |      █   █   █   █   █   █   █
+ |     ██  ██  ██  ██  ██  ██  ██
+ |    ███ ███ ███ ███ ███ ███ ███
+ |______________________________________________>
+ 0                                            255
+```
+
+The histogram is spread over the full intensity range.
+
+✅ Better global contrast
+
+❌ Noise may also become more visible.
+
+---
+
+### Histogram in CLAHE
+
+Instead of processing the entire histogram, the image is divided into multiple tiles.
+
+Example:
+
+```text
++-------+-------+
+| Tile1 | Tile2 |
++-------+-------+
+| Tile3 | Tile4 |
++-------+-------+
+```
+
+Each tile has its own histogram.
+
+Example histogram of one tile:
+
+```text
+Frequency
+ ^
+ |                  ███████████████
+ |                 ██████████████████
+ |               █████████████████████
+ |            ███████████████████
+ +-------------------------------------------->
+```
+
+If a histogram contains a very high peak:
+
+```text
+Frequency
+ ^
+ |                    ███████████████████████████
+ |                    ███████████████████████████
+ |                    ███████████████████████████
+ +---------------------------------------------->
+```
+
+CLAHE clips the peak:
+
+```text
+Frequency
+ ^
+ |                    ███████
+ |                  █████████
+ |               ████████████
+ |____________████______________________________>
+```
+
+The clipped pixels are then redistributed across other intensity levels.
+
+This results in:
+
+- Better local contrast
+- Less noise amplification
+- More natural appearance
+
+---
+
+## 🔍 How CLAHE Works
+
+1. Divide the image into small tiles.
+2. Compute a histogram for each tile.
+3. Clip histogram peaks using the Clip Limit.
+4. Redistribute clipped pixels.
+5. Apply Histogram Equalization to each tile.
+6. Blend neighboring tiles using bilinear interpolation.
+
+---
+
+## 🎯 Advantages
+
+- Enhances **local** contrast instead of only global contrast.
+- Preserves image brightness better than Histogram Equalization.
+- Prevents over-enhancement of noise.
+- Works well for images with non-uniform illumination.
+
+---
+
+## ⚠ Disadvantages
+
+- Slower than Histogram Equalization.
+- Requires choosing appropriate values for:
+  - Clip Limit
+  - Tile Grid Size
+
+---
 
 ## 📌 Applications
 
 - Medical imaging
-- Face recognition
 - Night vision
+- Face recognition
 - Traffic surveillance
+- Satellite imagery
 - Low-light photography
 
 ---
 
-# 🔍 Comparison
+## 💡 Comparison
 
-| Feature | Histogram Stretching | Histogram Equalization | CLAHE |
-|----------|----------------------|------------------------|--------|
-| Enhancement Type | Global | Global | Local (Adaptive) |
-| Brightness Preservation | ✅ Good | ❌ May Change | ✅ Better |
-| Contrast Improvement | Moderate | High | Very High |
-| Noise Amplification | Low | Medium | Low |
-| Uneven Illumination | Weak | Moderate | Excellent |
-| Computational Cost | Low | Medium | High |
+| Method | Histogram Shape | Noise | Brightness | Contrast |
+|---------|-----------------|-------|------------|-----------|
+| Histogram Stretching | Stretched | Low | Mostly Preserved | Moderate |
+| Histogram Equalization | Uniform Globally | High | May Change | High |
+| CLAHE | Equalized per Tile with Clipping | Low | Better Preserved | High (Local) |
 
 ---
 
+> **Key Idea:**  
+> Histogram Equalization tries to flatten the histogram of the **entire image**, while CLAHE flattens **small local histograms** and limits very high peaks before equalization. This is why CLAHE reveals local details without amplifying noise excessively.
 # 💡 Brightness and Contrast Together
 
 Different enhancement methods affect brightness and contrast differently:
