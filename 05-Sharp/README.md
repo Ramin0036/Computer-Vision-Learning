@@ -157,9 +157,3 @@ pip install numpy opencv-python matplotlib
 ```
 
 ---
-
-# 📖 References
-
-- Digital Image Processing concepts
-- OpenCV image filtering documentation
-- Convolution operations in Computer Vision
