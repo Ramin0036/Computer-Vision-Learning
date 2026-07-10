@@ -13,21 +13,6 @@
 
 ---
 
-# 📚 Table of Contents
-
-- Introduction
-- Why Edge Detection?
-- Learning Roadmap
-- Notebook Contents
-- Edge Detector Comparison
-- Technologies
-- Installation
-- Learning Outcomes
-- References
-- License
-
----
-
 # 📖 Introduction
 
 Edge detection identifies locations where image intensity changes rapidly. These changes usually correspond to object boundaries, corners, textures, or meaningful structures.
