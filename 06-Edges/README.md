@@ -1,158 +1,169 @@
-# Edge Detection in Image Processing
 
-This repository is a collection of educational Jupyter notebooks designed to help learners understand the fundamentals of **Edge Detection** in Digital Image Processing.
+<div align="center">
 
-The notebooks are arranged in a logical learning sequence, beginning with the concept of image gradients and gradually introducing more advanced edge detection techniques. Each notebook focuses on a single topic, making it easier to understand the theory before implementing it in Python.
+# 🔍 Edge Detection in Digital Image Processing
 
----
+### *A Step-by-Step Educational Guide to Classical Edge Detection Algorithms*
 
-## What You Will Learn
+![Python](https://img.shields.io/badge/Python-3.x-blue?logo=python)
+![OpenCV](https://img.shields.io/badge/OpenCV-4.x-green?logo=opencv)
+![NumPy](https://img.shields.io/badge/NumPy-orange?logo=numpy)
+![Matplotlib](https://img.shields.io/badge/Matplotlib-red)
+![Jupyter](https://img.shields.io/badge/Jupyter-Notebook-F37626?logo=jupyter)
 
-Throughout these notebooks, you will learn:
-
-- What edges represent in an image
-- Why gradients are useful for edge detection
-- The impact of image smoothing on edge quality
-- The difference between first-order and second-order derivatives
-- How classical edge detection operators work
-- When to use each edge detection technique
-- Advantages and limitations of different methods
+</div>
 
 ---
 
-## Learning Topics
-
-### Image Gradient
-
-Learn the basic concept of image gradients and how changes in pixel intensity indicate the presence of edges.
-
-**Concepts**
-- Pixel intensity
-- Gradient
-- Gradient magnitude
-- Gradient direction
-- Edge representation
+> **Learning Goal**
+>
+> This repository is an educational collection of Jupyter notebooks that explains the theory and implementation of classical edge detection methods. The lessons begin with image gradients and gradually introduce Gaussian smoothing, first-order derivatives, second-order derivatives, Laplacian, and the Canny Edge Detector.
 
 ---
 
-### Effect of Gaussian Blur on Gradients
+# 📚 Table of Contents
 
-Understand why smoothing an image before computing gradients can improve edge detection by reducing noise.
-
-**Concepts**
-- Image noise
-- Gaussian Blur
-- Smoothing
-- Noise reduction
-- Detail preservation
-
----
-
-### Introduction to Edge Detection
-
-Explore the general idea of edge detection and understand how edges are extracted from grayscale images.
-
-**Concepts**
-- Edge localization
-- Intensity discontinuity
-- Thresholding
-- Binary edge maps
+- Introduction
+- Why Edge Detection?
+- Learning Roadmap
+- Notebook Contents
+- Edge Detector Comparison
+- Technologies
+- Installation
+- Learning Outcomes
+- References
+- License
 
 ---
 
-### Exploring Different Edge Detection Results
+# 📖 Introduction
 
-Observe how different parameters and approaches influence the detected edges and overall image quality.
+Edge detection identifies locations where image intensity changes rapidly. These changes usually correspond to object boundaries, corners, textures, or meaningful structures.
 
-**Concepts**
-- Threshold comparison
-- Edge sensitivity
-- Parameter effects
-- Visualization
+Instead of processing every pixel equally, edge detection extracts the structural information of an image, making it one of the most important preprocessing steps in Computer Vision.
 
----
+Applications include:
 
-### Edge Detection After Gaussian Smoothing
-
-Learn why Gaussian filtering is commonly applied before edge detection algorithms and how it improves robustness.
-
-**Concepts**
-- Gaussian filtering
-- Noise suppression
-- Cleaner edge maps
-- Blur kernel size
+- Object Detection
+- Image Segmentation
+- Feature Extraction
+- Medical Imaging
+- Autonomous Driving
+- OCR
+- Robotics
 
 ---
 
-### Prewitt and Sobel Operators
+# 🎯 Learning Objectives
 
-Study two of the most widely used gradient-based edge detection operators and compare their behavior.
+After completing these notebooks you will understand:
 
-**Concepts**
-- Horizontal gradients
-- Vertical gradients
-- Gradient magnitude
-- Prewitt Operator
-- Sobel Operator
-- Operator comparison
-
----
-
-### Second-Order Derivatives
-
-Learn how second derivatives detect edges differently from gradient-based methods and why they are more sensitive to noise.
-
-**Concepts**
-- Second derivative
-- Zero-crossings
-- Edge enhancement
-- Noise sensitivity
-
----
-
-### Laplacian Operator
-
-Understand the Laplacian operator and how it detects edges using second-order derivatives.
-
-**Concepts**
-- Laplacian filter
-- Zero-crossing
-- Image sharpening
-- Second derivative
-
----
-
-### Canny Edge Detection
-
-Learn the complete Canny edge detection pipeline, one of the most powerful classical edge detection algorithms.
-
-**Concepts**
+- Image gradients
 - Gaussian smoothing
-- Gradient computation
-- Non-Maximum Suppression
-- Double Threshold
-- Edge Tracking by Hysteresis
+- First-order derivatives
+- Second-order derivatives
+- Zero-crossings
+- Prewitt operator
+- Sobel operator
+- Laplacian operator
+- Canny Edge Detector
 
 ---
 
-## Tools Used
+# 🧭 Learning Roadmap
 
-The notebooks are implemented using:
+```mermaid
+flowchart LR
+A[Image Gradient]
+-->B[Gaussian Blur]
+B-->C[Basic Edge Detection]
+C-->D[Prewitt]
+C-->E[Sobel]
+D-->F[Second Derivative]
+E-->F
+F-->G[Laplacian]
+G-->H[Canny]
+```
+
+---
+
+# 📖 Notebook Contents
+
+| Topic | Description |
+|------|-------------|
+| **Image Gradient** | Learn how intensity changes are represented mathematically through gradients. Explore gradient magnitude and direction as the foundation of edge detection. |
+| **Gradient + Blur Impact** | Understand how Gaussian Blur suppresses noise and improves gradient estimation while preserving important structures. |
+| **Basic Edge Detection** | Learn how gradients are converted into edge maps using thresholding and intensity discontinuities. |
+| **Edge Detection Variations** | Observe how different parameters influence detected edges and compare the resulting edge maps. |
+| **Gaussian + Edge Detection** | Study why Gaussian filtering is commonly applied before edge detection and compare results before and after smoothing. |
+| **Prewitt & Sobel** | Explore two first-order derivative operators. Prewitt provides a simple approximation, while Sobel uses weighted kernels for improved robustness against noise. |
+| **Second Derivatives** | Learn how edges can be detected through zero-crossings instead of gradient magnitude and understand why second derivatives amplify noise. |
+| **Laplacian** | Study an orientation-independent second-order operator that highlights edges in all directions and is commonly paired with Gaussian smoothing. |
+| **Canny Edge Detector** | Learn the complete multi-stage pipeline: Gaussian smoothing, gradient computation, non-maximum suppression, double thresholding, and hysteresis for accurate, thin, continuous edges. |
+
+---
+
+# 📊 Edge Detector Comparison
+
+| Detector | Principle | Advantages | Limitations |
+|-----------|-----------|------------|-------------|
+| Gradient | Intensity change | Simple and intuitive | Sensitive to noise |
+| Prewitt | First derivative | Fast and easy | Lower accuracy |
+| Sobel | Weighted first derivative | Better localization | Slightly higher computation |
+| Laplacian | Second derivative | Detects edges in all directions | Highly sensitive to noise |
+| Canny | Multi-stage | Excellent accuracy and noise suppression | Computationally more expensive |
+
+---
+
+# ⭐ Key Features
+
+- Progressive educational structure
+- Mathematical intuition
+- Practical Python implementation
+- Visualization with Matplotlib
+- OpenCV-based examples
+- Notebook-by-notebook learning path
+
+---
+
+# 💻 Technologies
 
 - Python
 - OpenCV
 - NumPy
 - Matplotlib
+- Jupyter Notebook
 
 ---
 
-## Prerequisites
+# 📦 Installation
 
-A basic understanding of the following topics is recommended:
-
-- Python programming
-- NumPy arrays
-- Image representation
-- Basic calculus concepts (derivatives)
+```bash
+pip install opencv-python numpy matplotlib notebook
+```
 
 ---
+
+# 🎯 Learning Outcomes
+
+By the end of this repository you should be able to:
+
+- Explain image gradients
+- Detect edges using classical operators
+- Compare first- and second-order methods
+- Implement Prewitt, Sobel, Laplacian, and Canny
+- Select suitable edge detectors for different computer vision tasks
+
+---
+
+# 📚 References
+
+- Richard Szeliski — Computer Vision: Algorithms and Applications
+- Rafael C. Gonzalez — Digital Image Processing
+- OpenCV Documentation
+
+---
+
+# 📄 License
+
+This repository is intended for educational purposes and may be freely used for learning and research.
