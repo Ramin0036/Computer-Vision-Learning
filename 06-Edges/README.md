@@ -1,18 +1,6 @@
 
 <h1 align="center">🔍 Edge Detection in Digital Image Processing</h1>
 
-<p align="center"><em>A Step-by-Step Educational Guide to Classical Edge Detection Algorithms</em></p>
-
-<p align="center">
-<img src="https://img.shields.io/badge/Python-3.x-blue?logo=python">
-<img src="https://img.shields.io/badge/OpenCV-4.x-green?logo=opencv">
-<img src="https://img.shields.io/badge/NumPy-orange?logo=numpy">
-<img src="https://img.shields.io/badge/Matplotlib-red">
-<img src="https://img.shields.io/badge/Jupyter-Notebook-F37626?logo=jupyter">
-</p>
-
----
-
 > **Learning Goal**
 >
 > This repository is an educational collection of Jupyter notebooks that explains the theory and implementation of classical edge detection methods. The lessons begin with image gradients and gradually introduce Gaussian smoothing, first-order derivatives, second-order derivatives, Laplacian, and the Canny Edge Detector.
