@@ -5,14 +5,6 @@
 
 ### *A Step-by-Step Educational Guide to Classical Edge Detection Algorithms*
 
-![Python](https://img.shields.io/badge/Python-3.x-blue?logo=python)
-![OpenCV](https://img.shields.io/badge/OpenCV-4.x-green?logo=opencv)
-![NumPy](https://img.shields.io/badge/NumPy-orange?logo=numpy)
-![Matplotlib](https://img.shields.io/badge/Matplotlib-red)
-![Jupyter](https://img.shields.io/badge/Jupyter-Notebook-F37626?logo=jupyter)
-
-</div>
-
 ---
 
 > **Learning Goal**
