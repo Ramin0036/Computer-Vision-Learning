@@ -1,15 +1,36 @@
 
-<div align="center">
+<h1 align="center">🔍 Edge Detection in Digital Image Processing</h1>
 
-# 🔍 Edge Detection in Digital Image Processing
+<p align="center"><em>A Step-by-Step Educational Guide to Classical Edge Detection Algorithms</em></p>
 
-### *A Step-by-Step Educational Guide to Classical Edge Detection Algorithms*
+<p align="center">
+<img src="https://img.shields.io/badge/Python-3.x-blue?logo=python">
+<img src="https://img.shields.io/badge/OpenCV-4.x-green?logo=opencv">
+<img src="https://img.shields.io/badge/NumPy-orange?logo=numpy">
+<img src="https://img.shields.io/badge/Matplotlib-red">
+<img src="https://img.shields.io/badge/Jupyter-Notebook-F37626?logo=jupyter">
+</p>
 
 ---
 
 > **Learning Goal**
 >
 > This repository is an educational collection of Jupyter notebooks that explains the theory and implementation of classical edge detection methods. The lessons begin with image gradients and gradually introduce Gaussian smoothing, first-order derivatives, second-order derivatives, Laplacian, and the Canny Edge Detector.
+
+---
+
+# 📚 Table of Contents
+
+- Introduction
+- Why Edge Detection?
+- Learning Roadmap
+- Notebook Contents
+- Edge Detector Comparison
+- Technologies
+- Installation
+- Learning Outcomes
+- References
+- License
 
 ---
 
@@ -92,35 +113,6 @@ G-->H[Canny]
 
 ---
 
-# ⭐ Key Features
-
-- Progressive educational structure
-- Mathematical intuition
-- Practical Python implementation
-- Visualization with Matplotlib
-- OpenCV-based examples
-- Notebook-by-notebook learning path
-
----
-
-# 💻 Technologies
-
-- Python
-- OpenCV
-- NumPy
-- Matplotlib
-- Jupyter Notebook
-
----
-
-# 📦 Installation
-
-```bash
-pip install opencv-python numpy matplotlib notebook
-```
-
----
-
 # 🎯 Learning Outcomes
 
 By the end of this repository you should be able to:
@@ -132,15 +124,3 @@ By the end of this repository you should be able to:
 - Select suitable edge detectors for different computer vision tasks
 
 ---
-
-# 📚 References
-
-- Richard Szeliski — Computer Vision: Algorithms and Applications
-- Rafael C. Gonzalez — Digital Image Processing
-- OpenCV Documentation
-
----
-
-# 📄 License
-
-This repository is intended for educational purposes and may be freely used for learning and research.
