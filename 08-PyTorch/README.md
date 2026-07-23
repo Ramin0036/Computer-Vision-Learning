@@ -194,6 +194,59 @@ The developer is responsible for writing:
 
 Although this requires slightly more code, it offers complete control over the learning process and is particularly useful for implementing novel architectures and research ideas.
 
+### ⭐ Example: Training Comparison
+
+The biggest difference between TensorFlow and PyTorch is how a model is trained.
+
+### TensorFlow (Keras)
+
+TensorFlow automates almost the entire training pipeline.
+
+```python
+model.compile(
+    optimizer="adam",
+    loss="categorical_crossentropy",
+    metrics=["accuracy"]
+)
+
+model.fit(train_loader, epochs=10)
+```
+
+With only a few lines of code, TensorFlow handles:
+
+- Forward propagation
+- Loss computation
+- Backpropagation
+- Gradient updates
+- Parameter optimization
+
+---
+
+### PyTorch
+
+In PyTorch, the developer explicitly controls every step of training.
+
+```python
+for images, labels in train_loader:
+
+    # Forward pass
+    outputs = model(images)
+
+    # Compute loss
+    loss = criterion(outputs, labels)
+
+    # Reset gradients
+    optimizer.zero_grad()
+
+    # Backward propagation
+    loss.backward()
+
+    # Update weights
+    optimizer.step()
+```
+
+Although PyTorch requires writing a few more lines of code, this design provides complete control over the training process. It allows developers to customize every stage of optimization, making PyTorch especially powerful for research and advanced deep learning applications.
+
 ---
 
 # 🎯 When Should You Use PyTorch?
@@ -248,12 +301,4 @@ https://pytorch.org/hub/
 
 ---
 
-# 💡 Conclusion
-
-PyTorch has become one of the most influential deep learning frameworks due to its flexibility, dynamic computation graph, and intuitive Python interface. While TensorFlow excels in production deployment and high-level APIs, PyTorch provides greater control over model implementation and training, making it the preferred framework for research, experimentation, and cutting-edge AI development.
-
----
-
-<p align="center">
 ⭐ If you found this repository helpful, consider giving it a Star!
-</p>
