@@ -1,64 +1,77 @@
 # Hough Transform: Line and Circle Detection
 
+<p align="center">
+
+![OpenCV](https://img.shields.io/badge/OpenCV-Computer%20Vision-blue?style=for-the-badge)
+![Python](https://img.shields.io/badge/Python-Programming-green?style=for-the-badge)
+
+</p>
+
+> An educational introduction to the **Hough Transform**, including line detection, circle detection, and the impact of image filtering on detection performance.
+
+---
+
 ## Introduction
 
-The **Hough Transform** is one of the most widely used feature extraction techniques in computer vision for detecting geometric shapes from digital images. Unlike conventional edge-based approaches, the Hough Transform is robust to noise, partial occlusion, and discontinuous object boundaries. It converts image points from the spatial domain into a parameter space, where geometric structures can be identified through a voting process.
-
-The algorithm is commonly applied after edge detection, typically using the Canny operator, to reduce computational complexity while preserving meaningful edge information.
+The **Hough Transform** is a classical feature extraction technique used in computer vision to detect geometric shapes such as straight lines and circles. Unlike simple edge-based methods, it remains effective even when objects are partially occluded, noisy, or discontinuous. Instead of detecting shapes directly in the image space, the algorithm maps edge pixels into a **parameter space**, where each pixel votes for all possible shapes passing through it. Peaks in this voting space indicate the presence of a valid geometric object.
 
 ---
 
 ## Hough Line Transform
 
-A straight line cannot be represented reliably by the slope-intercept equation because vertical lines produce infinite slopes. Instead, the Hough Line Transform represents a line using the polar equation
+A line is represented in polar form rather than slope-intercept form:
 
-\[
-\rho = x\cos\theta + y\sin\theta
-\]
+$$
+\rho=x\cos\theta+y\sin\theta
+$$
 
-where **ρ** is the perpendicular distance from the origin to the line and **θ** is the angle between the x-axis and the line's normal vector.
+where **ρ** is the perpendicular distance from the origin and **θ** is the angle of the line normal.
 
-Each edge pixel votes for all possible lines passing through it in the parameter space (ρ, θ). Peaks in the accumulator indicate the existence of dominant lines in the original image.
-
-This voting mechanism enables the algorithm to detect lines even when they are partially missing or corrupted by noise.
+Each edge pixel contributes votes in the accumulator space. The parameters receiving the highest number of votes correspond to the detected lines. This representation naturally handles vertical lines and improves robustness against image noise.
 
 ---
 
 ## Hough Circle Transform
 
-Circle detection is more challenging because a circle is described by three parameters: its center coordinates (a, b) and radius r.
+A circle is defined by its center $(a,b)$ and radius $r$:
 
-\[
+$$
 (x-a)^2+(y-b)^2=r^2
-\]
+$$
 
-Searching the entire three-dimensional parameter space is computationally expensive. Therefore, OpenCV implements the **Hough Gradient Method**, which combines gradient information with the voting process to estimate circle centers efficiently before determining the radius.
-
-Compared with the standard Hough Transform, this approach significantly reduces computational cost while maintaining high detection accuracy.
-
----
-
-## Line vs Circle Detection
-
-Although both algorithms rely on the same voting principle, they differ in their parameter spaces and computational complexity. Line detection operates in a two-dimensional accumulator, whereas circle detection requires three parameters, making it more sensitive to noise and parameter selection.
-
-Proper preprocessing is therefore essential to improve detection performance.
+Circle detection requires estimating three parameters, making it more computationally demanding than line detection. OpenCV therefore uses the **Hough Gradient Method**, which exploits edge gradients to estimate circle centers before searching for the radius, significantly reducing computational cost.
 
 ---
 
 ## Effect of Image Filtering
 
-Image filtering plays an important role before applying the Hough Transform.
+Proper preprocessing strongly influences detection accuracy.
 
-- **Gaussian Blur** suppresses Gaussian noise and reduces false edge responses, making it the preferred preprocessing step for circle detection.
-- **Median Blur** effectively removes salt-and-pepper noise while preserving edge boundaries, improving robustness in noisy images.
-- **Bilateral Filtering** smooths homogeneous regions without significantly blurring edges, often providing the highest detection accuracy.
-- Excessive smoothing, however, may remove weak edges, resulting in missed lines or circles.
+| Filter | Effect on Detection |
+|---------|---------------------|
+| Gaussian Blur | Reduces Gaussian noise and improves circle detection. |
+| Median Blur | Removes salt-and-pepper noise while preserving edges. |
+| Bilateral Filter | Smooths the image while maintaining sharp edges. |
+| Box Blur | Fast but may blur important edge information. |
 
-Selecting an appropriate filtering technique requires balancing noise reduction and edge preservation.
+Choosing an appropriate filter is a trade-off between **noise suppression** and **edge preservation**. Excessive smoothing may remove weak edges and reduce the number of detected lines or circles.
 
 ---
 
 ## Conclusion
 
-The Hough Transform remains one of the most reliable classical computer vision techniques for detecting geometric primitives. Hough Line Transform provides efficient and robust line detection using a two-parameter representation, while Hough Circle Transform extends the same principle to circular objects through gradient-based optimization. When combined with suitable preprocessing and edge detection, these methods continue to achieve accurate results in industrial inspection, autonomous driving, medical imaging, and many other real-world applications.
+The Hough Transform remains one of the most reliable classical algorithms for detecting geometric primitives. When combined with edge detection and suitable image filtering, it provides accurate and robust results for applications such as lane detection, industrial inspection, medical imaging, and autonomous systems.
+
+---
+
+## References
+
+- Richard O. Duda and Peter E. Hart, *Use of the Hough Transformation to Detect Lines and Curves in Pictures*, 1972.
+- Rafael C. Gonzalez & Richard E. Woods, *Digital Image Processing*.
+- OpenCV Documentation.
+
+---
+
+## ⭐ Support
+
+If you found this repository useful, please consider giving it a **⭐ Star** on GitHub.
