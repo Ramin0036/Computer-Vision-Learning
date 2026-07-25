@@ -1,135 +1,64 @@
-# Hough Transform: Line and Circle Detection with Image Preprocessing
+# Hough Transform: Line and Circle Detection
 
-## Overview
+## Introduction
 
-This repository explains Hough Transform for detecting lines and circles
-and studies how preprocessing filters such as Gaussian Blur, Median
-Blur, and Bilateral Filter affect detection performance.
+The **Hough Transform** is one of the most widely used feature extraction techniques in computer vision for detecting geometric shapes from digital images. Unlike conventional edge-based approaches, the Hough Transform is robust to noise, partial occlusion, and discontinuous object boundaries. It converts image points from the spatial domain into a parameter space, where geometric structures can be identified through a voting process.
 
-### Topics
+The algorithm is commonly applied after edge detection, typically using the Canny operator, to reduce computational complexity while preserving meaningful edge information.
 
--   Hough Line Transform
--   Probabilistic Hough Transform
--   Hough Circle Transform
--   Image preprocessing
--   Canny Edge Detection
--   Filter comparison
--   Advantages and disadvantages
+---
 
-## Theory
+## Hough Line Transform
 
-A line is represented in Hough space by:
+A straight line cannot be represented reliably by the slope-intercept equation because vertical lines produce infinite slopes. Instead, the Hough Line Transform represents a line using the polar equation
 
-\[ `\rho `{=tex}=
-x`\cos`{=tex}(`\theta`{=tex})+y`\sin`{=tex}(`\theta`{=tex}) \]
+\[
+\rho = x\cos\theta + y\sin\theta
+\]
 
-Each edge pixel votes in parameter space. Peaks correspond to detected
-lines.
+where **ρ** is the perpendicular distance from the origin to the line and **θ** is the angle between the x-axis and the line's normal vector.
 
-A circle is represented by:
+Each edge pixel votes for all possible lines passing through it in the parameter space (ρ, θ). Peaks in the accumulator indicate the existence of dominant lines in the original image.
 
-\[ (x-a)^2+(y-b)^2=r\^2 \]
+This voting mechanism enables the algorithm to detect lines even when they are partially missing or corrupted by noise.
 
-where `(a,b)` is the center and `r` is the radius.
+---
 
-## OpenCV Functions
+## Hough Circle Transform
 
-``` python
-cv2.HoughLines()
-cv2.HoughLinesP()
-cv2.HoughCircles()
-```
+Circle detection is more challenging because a circle is described by three parameters: its center coordinates (a, b) and radius r.
 
-## Typical Pipeline
+\[
+(x-a)^2+(y-b)^2=r^2
+\]
 
-``` text
-Input Image
-    ↓
-Grayscale
-    ↓
-Blur
-    ↓
-Canny
-    ↓
-Hough Transform
-    ↓
-Detected Shapes
-```
+Searching the entire three-dimensional parameter space is computationally expensive. Therefore, OpenCV implements the **Hough Gradient Method**, which combines gradient information with the voting process to estimate circle centers efficiently before determining the radius.
 
-## Gaussian Blur
+Compared with the standard Hough Transform, this approach significantly reduces computational cost while maintaining high detection accuracy.
 
-``` python
-blur = cv2.GaussianBlur(image,(5,5),0)
-```
+---
 
-Advantages: - Removes random noise - Reduces false detections - Improves
-circle detection
+## Line vs Circle Detection
 
-Disadvantages: - Weakens thin edges - Large kernels remove details
+Although both algorithms rely on the same voting principle, they differ in their parameter spaces and computational complexity. Line detection operates in a two-dimensional accumulator, whereas circle detection requires three parameters, making it more sensitive to noise and parameter selection.
 
-## Median Blur
+Proper preprocessing is therefore essential to improve detection performance.
 
-``` python
-blur = cv2.medianBlur(image,5)
-```
+---
 
-Advantages: - Excellent for salt & pepper noise - Preserves edges better
+## Effect of Image Filtering
 
-Disadvantages: - May distort very small circles
+Image filtering plays an important role before applying the Hough Transform.
 
-## Bilateral Filter
+- **Gaussian Blur** suppresses Gaussian noise and reduces false edge responses, making it the preferred preprocessing step for circle detection.
+- **Median Blur** effectively removes salt-and-pepper noise while preserving edge boundaries, improving robustness in noisy images.
+- **Bilateral Filtering** smooths homogeneous regions without significantly blurring edges, often providing the highest detection accuracy.
+- Excessive smoothing, however, may remove weak edges, resulting in missed lines or circles.
 
-``` python
-filtered = cv2.bilateralFilter(image,9,75,75)
-```
+Selecting an appropriate filtering technique requires balancing noise reduction and edge preservation.
 
-Advantages: - Removes noise - Preserves sharp edges
-
-Disadvantages: - Computationally expensive
-
-## Filter Comparison
-
-  Filter      Noise Removal   Edge Preservation   Speed
-  ----------- --------------- ------------------- --------
-  Gaussian    High            Medium              Fast
-  Median      High            High                Medium
-  Bilateral   High            Very High           Slow
-
-## Effect on Hough Transform
-
-### Too little blur
-
--   Many noisy edges
--   False lines
--   False circles
-
-### Too much blur
-
--   Missing edges
--   Missing small circles
--   Poor radius estimation
-
-## Requirements
-
-``` bash
-pip install opencv-python
-pip install numpy
-pip install matplotlib
-```
-
-## Project Structure
-
-``` text
-Hough-Transform/
-├── images/
-├── line_detection.py
-├── circle_detection.py
-├── filtering_comparison.py
-├── README.md
-```
+---
 
 ## Conclusion
 
-Choosing an appropriate preprocessing filter is essential. Moderate
-Gaussian or Median Blur often improves Hough Transform by suppressing
-noise while preserving important edges.
+The Hough Transform remains one of the most reliable classical computer vision techniques for detecting geometric primitives. Hough Line Transform provides efficient and robust line detection using a two-parameter representation, while Hough Circle Transform extends the same principle to circular objects through gradient-based optimization. When combined with suitable preprocessing and edge detection, these methods continue to achieve accurate results in industrial inspection, autonomous driving, medical imaging, and many other real-world applications.
