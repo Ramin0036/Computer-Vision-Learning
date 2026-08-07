@@ -97,4 +97,3 @@ B-->D[YOLO Grid Prediction]
 # References
 - SSD: Single Shot MultiBox Detector (ECCV 2016)
 - YOLO: You Only Look Once (CVPR 2016)
-
