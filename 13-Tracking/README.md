@@ -1,9 +1,5 @@
 # 🚀 Object Tracking & Evaluation Guide
 
-![GitHub](https://img.shields.io/badge/Status-Academic-blue)
-![Topic](https://img.shields.io/badge/Computer-Vision-brightgreen)
-![Tracking](https://img.shields.io/badge/MOT-SOT-orange)
-
 This repository serves as a technical guide to **Object Tracking algorithms** and **Evaluation Metrics**. It aims to provide a rigorous framework for selecting appropriate methodologies for industrial and research-oriented applications.
 
 ---
