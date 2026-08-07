@@ -1,5 +1,4 @@
 # Define the original content for each file to ensure accuracy
-content_5 = """# 🚀 R-CNN Family: From R-CNN to Faster R-CNN
 
 > 📑 Comprehensive GitHub README about the evolution of the R-CNN family.
 
