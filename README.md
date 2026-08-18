@@ -1,5 +1,3 @@
-# Computer-Vision
-
 # 👁️ Computer Vision
 
 Welcome to the **Computer Vision** section of this repository. 🚀
@@ -66,6 +64,8 @@ The topics are designed to progress from traditional image processing to modern 
 🎥 Tracking
         ↓
 🧠 Vision Transformer
+
+```
 
 ## 🎯 Goal
 
